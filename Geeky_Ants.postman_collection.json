@@ -1,0 +1,545 @@
+{
+	"info": {
+		"_postman_id": "412d1e5f-4856-4cc1-b2b3-01435cd9bb52",
+		"name": "Engineering Resource Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37221447"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Manager Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('bearerToken', pm.response.json().accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"manager@company.com\",\n    \"password\": \"manager123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["users", "login"]
+						}
+					}
+				},
+				{
+					"name": "Engineer Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set('bearerToken', pm.response.json().accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"alice@company.com\",\n    \"password\": \"engineer123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["users", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Engineers",
+			"item": [
+				{
+					"name": "Get All Engineers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/engineers?page=1&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["engineers"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "limit", "value": "10"},
+								{"key": "skills", "value": "React,Node.js", "disabled": true},
+								{"key": "seniority", "value": "senior", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Engineer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/engineers/{{engineerId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["engineers", "{{engineerId}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Engineer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@company.com\",\n    \"password\": \"engineer123\",\n    \"skills\": [\"React\", \"Node.js\", \"MongoDB\"],\n    \"seniority\": \"mid\",\n    \"department\": \"Frontend\",\n    \"employmentType\": \"full-time\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/engineers",
+							"host": ["{{baseUrl}}"],
+							"path": ["engineers"]
+						}
+					}
+				},
+				{
+					"name": "Update Engineer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skills\": [\"React\", \"Node.js\", \"TypeScript\"],\n    \"seniority\": \"senior\",\n    \"department\": \"Full Stack\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/engineers/{{engineerId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["engineers", "{{engineerId}}"]
+						}
+					}
+				},
+				{
+					"name": "Get Engineer Capacity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/engineers/{{engineerId}}/capacity",
+							"host": ["{{baseUrl}}"],
+							"path": ["engineers", "{{engineerId}}", "capacity"]
+						}
+					}
+				},
+				{
+					"name": "Delete Engineer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/engineers/{{engineerId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["engineers", "{{engineerId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get All Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects?page=1&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["projects"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "limit", "value": "10"},
+								{"key": "status", "value": "active", "disabled": true},
+								{"key": "managerId", "value": "{{managerId}}", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Project by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects/{{projectId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["projects", "{{projectId}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Web Application\",\n    \"description\": \"Build a modern web application with React and Node.js\",\n    \"startDate\": \"2024-02-01\",\n    \"endDate\": \"2024-08-31\",\n    \"requiredSkills\": [\"React\", \"Node.js\", \"MongoDB\"],\n    \"teamSize\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/projects",
+							"host": ["{{baseUrl}}"],
+							"path": ["projects"]
+						}
+					}
+				},
+				{
+					"name": "Update Project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Project Name\",\n    \"status\": \"active\",\n    \"teamSize\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/projects/{{projectId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["projects", "{{projectId}}"]
+						}
+					}
+				},
+				{
+					"name": "Find Suitable Engineers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects/{{projectId}}/suitable-engineers",
+							"host": ["{{baseUrl}}"],
+							"path": ["projects", "{{projectId}}", "suitable-engineers"]
+						}
+					}
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects/{{projectId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["projects", "{{projectId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Assignments",
+			"item": [
+				{
+					"name": "Get All Assignments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/assignments?page=1&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["assignments"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "limit", "value": "10"},
+								{"key": "engineerId", "value": "{{engineerId}}", "disabled": true},
+								{"key": "projectId", "value": "{{projectId}}", "disabled": true},
+								{"key": "status", "value": "active", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Assignment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/assignments/{{assignmentId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["assignments", "{{assignmentId}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Assignment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"engineerId\": \"{{engineerId}}\",\n    \"projectId\": \"{{projectId}}\",\n    \"allocationPercentage\": 50,\n    \"startDate\": \"2024-02-01\",\n    \"endDate\": \"2024-05-31\",\n    \"role\": \"Frontend Developer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignments",
+							"host": ["{{baseUrl}}"],
+							"path": ["assignments"]
+						}
+					}
+				},
+				{
+					"name": "Update Assignment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"allocationPercentage\": 70,\n    \"role\": \"Senior Frontend Developer\",\n    \"status\": \"active\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignments/{{assignmentId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["assignments", "{{assignmentId}}"]
+						}
+					}
+				},
+				{
+					"name": "Get Engineer Assignments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/assignments/engineer/{{engineerId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["assignments", "engineer", "{{engineerId}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Assignment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/assignments/{{assignmentId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["assignments", "{{assignmentId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Manager Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/manager",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "manager"]
+						}
+					}
+				},
+				{
+					"name": "Engineer Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/engineer",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "engineer"]
+						}
+					}
+				},
+				{
+					"name": "Team Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/analytics",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "analytics"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Users (Legacy)",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users?userType=Engineer",
+							"host": ["{{baseUrl}}"],
+							"path": ["users"],
+							"query": [
+								{"key": "userType", "value": "Engineer"}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get User Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/me",
+							"host": ["{{baseUrl}}"],
+							"path": ["users", "me"]
+						}
+					}
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Name\",\n    \"phoneNumber\": \"1234567890\",\n    \"skills\": [\"React\", \"Node.js\", \"TypeScript\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["users", "{{userId}}"]
+						}
+					}
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"engineer123\",\n    \"newPassword\": \"newpassword123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/change-password",
+							"host": ["{{baseUrl}}"],
+							"path": ["users", "change-password"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:4100/api",
+			"type": "string"
+		},
+		{
+			"key": "bearerToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "engineerId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "projectId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "assignmentId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "managerId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
