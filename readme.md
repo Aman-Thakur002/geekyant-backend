@@ -39,12 +39,13 @@ A full-featured backend system built with **Node.js**, **Express**, and **MongoD
 
 ---
 
+
 ## 🛠️ Installation & Setup
 
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Aman-Thakur002/geekyant-backend
 cd geekyants-task
 ```
 
@@ -173,17 +174,16 @@ Authorization: Bearer <your_jwt_token>
 
 ### Authentication
 ```http
-POST /api/auth/login
-POST /api/auth/register
+POST /api/user/login
 ```
 
 ### Engineers
 ```http
 GET    /api/engineers
-POST   /api/engineers
+POST   /api/users
 GET    /api/engineers/:id
-PUT    /api/engineers/:id
-DELETE /api/engineers/:id
+PUT    /api/users/:id
+DELETE /api/users/:id
 ```
 
 ### Projects
@@ -225,34 +225,38 @@ GET /api/dashboard/analytics
 
 ---
 
+## 🧠 Productivity with Cursor IDE
+
+Throughout the development process, I used **[Cursor](https://www.cursor.so)** – an AI-enhanced coding environment – to accelerate my workflow in the following ways:
+
+### ⚡ Rapid Route Generation
+Using Cursor's inline AI assistance, I quickly scaffolded RESTful route files from my controller logic, ensuring consistent structure and reducing boilerplate code.
+
+### 🪲 Debugging Errors Efficiently
+Cursor's built-in AI helped trace and explain runtime errors and logical bugs directly in the editor, saving hours of debugging time — especially in complex controller-service-model interactions.
+
+### 🧪 Generating Postman Collections
+I used Cursor's smart context-aware AI to convert my controller inputs and sample payloads into ready-to-import Postman requests, helping automate testing faster and more accurately.
+
+### ✅ Benefits
+- Reduced redundant typing
+- Fixed bugs faster
+- Improved consistency between controllers and routes
+- Saved time on testing setup
+
+---
+
 ## 📌 Future Improvements (Optional)
 
 * Swagger for live API docs
 * CI/CD with Docker
-* Email notifications for assignments
-* Frontend dashboard (React)
+* Email notifications and push notifications for assignments
 
 ---
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
 
 ## 🧑‍💻 Author
 
-**Engineering Resource Management System** - Backend by [Your Name]  
-Challenge by GeekyAnts
+**Engineering Resource Management System** - Backend by Aman Singh  
 
 --
