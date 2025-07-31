@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+    "start": "npm run build && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist --copy-files",
     "dev": "nodemon --exec babel-node src/app.js",
